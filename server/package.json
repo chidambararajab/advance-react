@@ -2,7 +2,7 @@
   "name": "@advanced-react/server",
   "scripts": {
     "start": "node dist/index.js",
-    "dev": "tsx watch --clear-screen=false ./index.ts",
+    "dev": "tsx watch --clear-screen=false --require ./polyfill.js ./index.ts",
     "drizzle:generate": "drizzle-kit generate",
     "drizzle:regenerate": "rm -rf ./drizzle && rm database.db && pnpm drizzle:generate && pnpm drizzle:migrate && pnpm drizzle:seed",
     "drizzle:migrate": "drizzle-kit migrate",
