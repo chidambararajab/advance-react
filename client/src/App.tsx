@@ -1,12 +1,11 @@
 import Navbar from "./features/shared/components/Navbar";
-import { ThemeProvider } from './features/shared/components/ThemeProvider';
+import { ThemeProvider } from "./features/shared/components/ThemeProvider";
 import { Toaster } from "./features/shared/components/ui/Toaster";
 import { useState } from "react";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { trpc } from './trpc';
-import { httpBatchLink } from '@trpc/client';
-import { env } from './lib/utils/env';
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { trpc } from "./trpc";
+import { httpBatchLink } from "@trpc/client";
+import { env } from "./lib/utils/env";
 
 export function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -34,7 +33,8 @@ export function App() {
                 </h1>
                 <p className="text-center text-sm text-neutral-500">
                   <b>
-                    <span className="dark:text-primary-500">Cosden</span> Solutions
+                    <span className="dark:text-primary-500">Cosden</span>{" "}
+                    Solutions
                   </b>
                 </p>
               </header>
@@ -45,7 +45,7 @@ export function App() {
           </div>
         </ThemeProvider>
       </QueryClientProvider>
-    </trpc.Provider >
+    </trpc.Provider>
   );
 }
 
@@ -56,5 +56,5 @@ function Index() {
     <div>
       <h1>{JSON.stringify(data)}</h1>
     </div>
-  )
+  );
 }
