@@ -3,11 +3,11 @@ import { ThemeProvider } from "./features/shared/components/ThemeProvider";
 import { Toaster } from "./features/shared/components/ui/Toaster";
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { trpc } from "./trpc";
 import { httpBatchLink } from "@trpc/client";
 import { env } from "./lib/utils/env";
 import { InfiniteScroll } from "./features/shared/components/InfiniteScroll";
 import { ExperienceList } from "./features/experiences/components/ExperienceList";
+import { trpc } from "./router";
 
 export function App() {
   const [queryClient] = useState(() => new QueryClient());
