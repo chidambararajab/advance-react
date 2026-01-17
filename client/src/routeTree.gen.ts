@@ -10,33 +10,44 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ExperiencesExperienceIdIndexRouteImport } from './routes/experiences/$experienceId/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExperiencesExperienceIdIndexRoute =
+  ExperiencesExperienceIdIndexRouteImport.update({
+    id: '/experiences/$experienceId/',
+    path: '/experiences/$experienceId/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/experiences/$experienceId': typeof ExperiencesExperienceIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/experiences/$experienceId': typeof ExperiencesExperienceIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/experiences/$experienceId/': typeof ExperiencesExperienceIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/experiences/$experienceId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/experiences/$experienceId'
+  id: '__root__' | '/' | '/experiences/$experienceId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ExperiencesExperienceIdIndexRoute: typeof ExperiencesExperienceIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +59,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/experiences/$experienceId/': {
+      id: '/experiences/$experienceId/'
+      path: '/experiences/$experienceId'
+      fullPath: '/experiences/$experienceId'
+      preLoaderRoute: typeof ExperiencesExperienceIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ExperiencesExperienceIdIndexRoute: ExperiencesExperienceIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
